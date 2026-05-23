@@ -1,0 +1,4 @@
+column,q1,q3,lower_bound,upper_bound,outliers_before_capping,outliers_after_capping
+popularity,16.129,35.174,-12.44,63.743,1048,0
+vote_count,146.0,1376.0,-1699.0,3221.0,1129,0
+vote_average,5.9,7.1,4.1,8.9,243,0

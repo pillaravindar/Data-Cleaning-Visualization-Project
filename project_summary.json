@@ -1,0 +1,144 @@
+{
+  "project_title": "MovieDB Data Cleaning and Visualization Project",
+  "raw_dataset": "data\\raw\\mymoviedb_raw.csv",
+  "cleaned_dataset": "data\\processed\\mymoviedb_cleaned.csv",
+  "notebook": "notebooks\\MovieDB_Data_Cleaning_Visualization_Project.ipynb",
+  "dashboard": "outputs\\reports\\movie_dashboard.html",
+  "insights_report": "outputs\\reports\\movie_insights_report.md",
+  "cleaning_summary": {
+    "raw_shape": [
+      9837,
+      9
+    ],
+    "clean_shape": [
+      9827,
+      27
+    ],
+    "load_method": "python_engine",
+    "unusable_rows_removed": 10,
+    "validation": {
+      "rows": 9827,
+      "columns": 27,
+      "missing_values_total": 0,
+      "duplicate_rows": 0,
+      "duplicate_title_release_rows": 0,
+      "invalid_vote_average_rows": 0,
+      "negative_popularity_rows": 0,
+      "date_range": "1902-04-17 to 2024-07-03"
+    }
+  },
+  "metrics": {
+    "movie_count": 9827,
+    "feature_count": 27,
+    "average_rating": 6.4394728808385056,
+    "median_rating": 6.5,
+    "average_popularity": 40.32200427393915,
+    "top_popular_movie": "Spider-Man: No Way Home",
+    "top_voted_movie": "Inception",
+    "top_rated_qualified_movie": "Dilwale Dulhania Le Jayenge",
+    "top_genre": "Drama",
+    "top_language": "English",
+    "most_common_decade": "2010s",
+    "best_avg_genre": "History",
+    "recent_share": 0.3850615650758115,
+    "english_share": 0.7702248906075099,
+    "rows_removed": 10,
+    "outlier_columns_treated": [
+      "popularity",
+      "vote_count",
+      "vote_average"
+    ]
+  },
+  "visualizations": [
+    {
+      "filename": "01_missing_values_before_cleaning.png",
+      "title": "Missing Values Before Cleaning",
+      "interpretation": "The raw movie dataset has a small number of missing values in title, overview, language, genre, poster URL, and numeric rating fields. These must be handled before analysis."
+    },
+    {
+      "filename": "02_outlier_boxplots_before_treatment.png",
+      "title": "Outlier Detection Before Treatment",
+      "interpretation": "Popularity and vote count contain very large blockbuster values. IQR capping creates stable analysis columns while preserving original values separately."
+    },
+    {
+      "filename": "03_top_10_movies_by_popularity.png",
+      "title": "Top 10 Movies by Popularity",
+      "interpretation": "The most popular movies are the highest-attention titles in the dataset. These films often represent strong public interest or platform visibility."
+    },
+    {
+      "filename": "04_top_10_movies_by_vote_count.png",
+      "title": "Top 10 Movies by Vote Count",
+      "interpretation": "Vote count shows audience engagement. Movies with many votes have stronger evidence behind their rating than movies with only a few votes."
+    },
+    {
+      "filename": "05_top_rated_qualified_movies.png",
+      "title": "Top Rated Movies with High Vote Count",
+      "interpretation": "Filtering by vote count avoids ranking movies highly just because very few people rated them. This produces a more reliable top-rated list."
+    },
+    {
+      "filename": "06_top_15_genres_by_count.png",
+      "title": "Top 15 Genres by Movie Count",
+      "interpretation": "Genre count shows which types of movies appear most often. Drama, comedy, action, and thriller-type genres often dominate large movie databases."
+    },
+    {
+      "filename": "07_average_popularity_by_genre.png",
+      "title": "Average Popularity by Genre",
+      "interpretation": "This chart shows which genres attract higher average attention. It is useful for understanding audience demand by content type."
+    },
+    {
+      "filename": "08_top_languages_by_movie_count.png",
+      "title": "Top Languages by Movie Count",
+      "interpretation": "Language distribution shows dataset coverage. English movies dominate, while Japanese, Spanish, French, Korean, and other languages add international variety."
+    },
+    {
+      "filename": "09_movie_releases_by_year.png",
+      "title": "Movie Releases by Year",
+      "interpretation": "Release trends show how the dataset changes over time. Recent years contain many movies because modern movie databases usually have richer coverage."
+    },
+    {
+      "filename": "10_movie_count_by_decade.png",
+      "title": "Movie Count by Decade",
+      "interpretation": "Decade analysis summarizes long-term coverage. It helps compare older cinema representation with modern releases."
+    },
+    {
+      "filename": "11_rating_distribution_histogram.png",
+      "title": "Rating Distribution",
+      "interpretation": "Most movies cluster around middle-to-good ratings. Very low and perfect ratings are less common after cleaning."
+    },
+    {
+      "filename": "12_popularity_distribution_histogram.png",
+      "title": "Popularity Distribution",
+      "interpretation": "Most movies have modest popularity, while a smaller group receives much higher attention. Capping makes the distribution easier to study."
+    },
+    {
+      "filename": "13_vote_count_vs_popularity_scatter.png",
+      "title": "Vote Count vs Popularity",
+      "interpretation": "Popular movies often receive more votes, but the relationship is not perfect. Some movies are highly rated or voted without being the most popular at the moment."
+    },
+    {
+      "filename": "14_overview_length_vs_rating_scatter.png",
+      "title": "Overview Length vs Rating",
+      "interpretation": "Overview length does not strongly determine rating, but this chart checks whether richer descriptions are associated with different rating patterns."
+    },
+    {
+      "filename": "15_rating_category_pie_chart.png",
+      "title": "Rating Category Share",
+      "interpretation": "The pie chart groups movies into simple rating bands. This makes it easy to explain the overall quality mix of the dataset."
+    },
+    {
+      "filename": "16_rating_by_primary_genre_boxplot.png",
+      "title": "Rating by Primary Genre",
+      "interpretation": "Boxplots compare rating ranges across genres. They show whether some genres tend to have higher median ratings or more variation."
+    },
+    {
+      "filename": "17_correlation_heatmap.png",
+      "title": "Correlation Heatmap",
+      "interpretation": "The heatmap shows relationships between numeric features. Popularity and vote count usually move together, while rating behaves differently."
+    },
+    {
+      "filename": "18_pairplot_key_movie_metrics.png",
+      "title": "Pairplot of Key Movie Metrics",
+      "interpretation": "The pairplot gives a compact view of multiple relationships at once. It is useful for spotting clusters, patterns, and unusual movies."
+    }
+  ]
+}

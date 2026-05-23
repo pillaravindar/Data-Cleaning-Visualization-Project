@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MovieDB Data Cleaning and Visualization Dashboard</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --ink: #151a20;
+      --muted: #5e6874;
+      --panel: #ffffff;
+      --accent: #2f6f73;
+      --accent2: #9b5f3d;
+      --line: #dce1e8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line);
+      padding: 38px 7vw 28px;
+    }
+    header h1 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 0;
+    }
+    header p {
+      max-width: 920px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    main { padding: 28px 7vw 48px; }
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .kpi, .section, .chart-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .kpi { padding: 18px; }
+    .kpi span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    .kpi strong {
+      display: block;
+      font-size: 24px;
+      color: var(--accent);
+    }
+    .section {
+      padding: 22px;
+      margin-bottom: 24px;
+    }
+    .section h2 { margin: 0 0 12px; font-size: 24px; }
+    .section li { margin: 8px 0; }
+    .explain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .explain-item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: #fbfcfe;
+    }
+    .explain-item h3 { margin: 0 0 8px; color: var(--accent); font-size: 17px; }
+    .explain-item p { margin: 0; color: var(--muted); font-size: 14px; }
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 20px;
+    }
+    .chart-card { overflow: hidden; }
+    .chart-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+    }
+    .chart-card h3 { margin: 16px 18px 8px; color: var(--accent); font-size: 18px; }
+    .chart-card p { margin: 0 18px 18px; color: var(--muted); font-size: 14px; }
+    footer {
+      background: #fff;
+      border-top: 1px solid var(--line);
+      padding: 24px 7vw;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MovieDB Data Cleaning and Visualization Dashboard</h1>
+    <p>A cleaned and visualized MovieDB dataset showing movie popularity, ratings, genres, languages, and release trends.</p>
+  </header>
+  <main>
+    <section class="kpis">
+      <div class="kpi"><span>Clean Movies</span><strong>9,827</strong></div>
+      <div class="kpi"><span>Average Rating</span><strong>6.44</strong></div>
+      <div class="kpi"><span>Top Genre</span><strong>Drama</strong></div>
+      <div class="kpi"><span>Top Language</span><strong>English</strong></div>
+      <div class="kpi"><span>Recent Share</span><strong>38.5%</strong></div>
+      <div class="kpi"><span>English Share</span><strong>77.0%</strong></div>
+    </section>
+    <section class="section">
+      <h2>About This Project</h2>
+      <p>The raw CSV was cleaned, converted into analysis-ready columns, and used to build charts around audience interest and movie quality. This is the same kind of workflow a streaming or review platform could use before building dashboards or recommendations.</p>
+    </section>
+    <section class="section"><h2>Key Insights</h2><ul><li>The cleaned dataset contains 9,827 valid movies across 27 columns.</li>
+<li>Spider-Man: No Way Home has the highest popularity score.</li>
+<li>Inception has the highest vote count.</li>
+<li>Dilwale Dulhania Le Jayenge stands out after filtering for movies with strong vote counts.</li>
+<li>Drama is the most common genre in the dataset.</li>
+<li>History has the highest average rating among genres with enough records for comparison.</li>
+<li>English is the dominant language, covering 77.0% of the cleaned dataset.</li>
+<li>The 2010s contain the largest number of movies in this dataset.</li>
+<li>Popularity and rating measure different things. A movie can be widely watched without being the highest rated.</li></ul></section>
+    <section class="section"><h2>Recommendations</h2><ul><li>Use weighted score when ranking movies so both rating and vote count are considered.</li>
+<li>Compare genres separately because audience behavior changes by content type.</li>
+<li>Consider release year when comparing older and newer movies.</li>
+<li>Use language analysis when studying international content demand.</li>
+<li>Use original popularity and vote-count values for top-movie lists, but capped values for cleaner statistical charts.</li></ul></section>
+    <section class="chart-grid">
+        <article class="chart-card">
+          <img src="../charts/03_top_10_movies_by_popularity.png" alt="Top 10 Movies by Popularity">
+          <h3>Top 10 Movies by Popularity</h3>
+          <p>The most popular movies are the highest-attention titles in the dataset. These films often represent strong public interest or platform visibility.</p>
+        </article>
+        
+
+        <article class="chart-card">
+          <img src="../charts/04_top_10_movies_by_vote_count.png" alt="Top 10 Movies by Vote Count">
+          <h3>Top 10 Movies by Vote Count</h3>
+          <p>Vote count shows audience engagement. Movies with many votes have stronger evidence behind their rating than movies with only a few votes.</p>
+        </article>
+        
+
+        <article class="chart-card">
+          <img src="../charts/05_top_rated_qualified_movies.png" alt="Top Rated Movies with High Vote Count">
+          <h3>Top Rated Movies with High Vote Count</h3>
+          <p>Filtering by vote count avoids ranking movies highly just because very few people rated them. This produces a more reliable top-rated list.</p>
+        </article>
+        
+
+        <article class="chart-card">
+          <img src="../charts/06_top_15_genres_by_count.png" alt="Top 15 Genres by Movie Count">
+          <h3>Top 15 Genres by Movie Count</h3>
+          <p>Genre count shows which types of movies appear most often. Drama, comedy, action, and thriller-type genres often dominate large movie databases.</p>
+        </article>
+        
+
+        <article class="chart-card">
+          <img src="../charts/07_average_popularity_by_genre.png" alt="Average Popularity by Genre">
+          <h3>Average Popularity by Genre</h3>
+          <p>This chart shows which genres attract higher average attention. It is useful for understanding audience demand by content type.</p>
+        </article>
+        
+
+        <article class="chart-card">
+          <img src="../charts/08_top_languages_by_movie_count.png" alt="Top Languages by Movie Count">
+          <h3>Top Languages by Movie Count</h3>
+          <p>Language distribution shows dataset coverage. English movies dominate, while Japanese, Spanish, French, Korean, and other languages add international variety.</p>
+        </article>
+        
+
+        <article class="chart-card">
+          <img src="../charts/09_movie_releases_by_year.png" alt="Movie Releases by Year">
+          <h3>Movie Releases by Year</h3>
+          <p>Release trends show how the dataset changes over time. Recent years contain many movies because modern movie databases usually have richer coverage.</p>
+        </article>
+        
+
+        <article class="chart-card">
+          <img src="../charts/10_movie_count_by_decade.png" alt="Movie Count by Decade">
+          <h3>Movie Count by Decade</h3>
+          <p>Decade analysis summarizes long-term coverage. It helps compare older cinema representation with modern releases.</p>
+        </article>
+        
+
+        <article class="chart-card">
+          <img src="../charts/11_rating_distribution_histogram.png" alt="Rating Distribution">
+          <h3>Rating Distribution</h3>
+          <p>Most movies cluster around middle-to-good ratings. Very low and perfect ratings are less common after cleaning.</p>
+        </article>
+        
+
+        <article class="chart-card">
+          <img src="../charts/12_popularity_distribution_histogram.png" alt="Popularity Distribution">
+          <h3>Popularity Distribution</h3>
+          <p>Most movies have modest popularity, while a smaller group receives much higher attention. Capping makes the distribution easier to study.</p>
+        </article>
+        
+
+        <article class="chart-card">
+          <img src="../charts/13_vote_count_vs_popularity_scatter.png" alt="Vote Count vs Popularity">
+          <h3>Vote Count vs Popularity</h3>
+          <p>Popular movies often receive more votes, but the relationship is not perfect. Some movies are highly rated or voted without being the most popular at the moment.</p>
+        </article>
+        
+
+        <article class="chart-card">
+          <img src="../charts/14_overview_length_vs_rating_scatter.png" alt="Overview Length vs Rating">
+          <h3>Overview Length vs Rating</h3>
+          <p>Overview length does not strongly determine rating, but this chart checks whether richer descriptions are associated with different rating patterns.</p>
+        </article>
+        
+
+        <article class="chart-card">
+          <img src="../charts/15_rating_category_pie_chart.png" alt="Rating Category Share">
+          <h3>Rating Category Share</h3>
+          <p>The pie chart groups movies into simple rating bands. This makes it easy to explain the overall quality mix of the dataset.</p>
+        </article>
+        
+
+        <article class="chart-card">
+          <img src="../charts/16_rating_by_primary_genre_boxplot.png" alt="Rating by Primary Genre">
+          <h3>Rating by Primary Genre</h3>
+          <p>Boxplots compare rating ranges across genres. They show whether some genres tend to have higher median ratings or more variation.</p>
+        </article>
+        
+
+        <article class="chart-card">
+          <img src="../charts/17_correlation_heatmap.png" alt="Correlation Heatmap">
+          <h3>Correlation Heatmap</h3>
+          <p>The heatmap shows relationships between numeric features. Popularity and vote count usually move together, while rating behaves differently.</p>
+        </article>
+        
+
+        <article class="chart-card">
+          <img src="../charts/18_pairplot_key_movie_metrics.png" alt="Pairplot of Key Movie Metrics">
+          <h3>Pairplot of Key Movie Metrics</h3>
+          <p>The pairplot gives a compact view of multiple relationships at once. It is useful for spotting clusters, patterns, and unusual movies.</p>
+        </article>
+        </section>
+  </main>
+  <footer>Generated by Python from the local mymoviedb.csv dataset.</footer>
+</body>
+</html>
